@@ -4,7 +4,7 @@ export class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            catbreeds: {},
+            catbreeds: [],
         };
     }
 
@@ -17,9 +17,10 @@ export class Home extends React.Component {
         };
 
         fetch('https://api.thecatapi.com/v1/breeds', fetch_options)
-        .then(data => {
-            this.setState({catbreeds: data});
-            console.log(this.state.catbreeds);
+        .then(response => {
+            response.json().then(data => {
+                this.setState({catbreeds: data});
+            });
         });
     }
 
@@ -28,6 +29,11 @@ export class Home extends React.Component {
             <div>
                 <div className="header">Cat Browser</div>
                 <p>Breed</p>
+                <select placeholder="Select breed">
+                    {this.state.catbreeds.map(breed=>(
+                        <option value={breed.id}>{breed.name}</option>
+                    ))}
+                </select>
             </div>
         );
     }
