@@ -100,6 +100,8 @@ export default class Home extends Component {
         breeds: data,
         ready: true
       });
+
+      // return no results when location is not set
       const query = this.props.location ? fromQuery(this.props.location.search) : {};
       if (query.breed) {
         this.select(query.breed);
