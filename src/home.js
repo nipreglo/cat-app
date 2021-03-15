@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/home.scss';
 
 export class Home extends React.Component {
     constructor(props) {
@@ -26,14 +27,23 @@ export class Home extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="header">Cat Browser</div>
-                <p>Breed</p>
-                <select placeholder="Select breed">
-                    {this.state.catbreeds.map(breed=>(
-                        <option value={breed.id}>{breed.name}</option>
-                    ))}
-                </select>
+            <div className="App">
+                <div className="Home">
+                    <h1>Cat Browser</h1>
+                    <div className="row" style={{padding: '10px 0px'}}>
+                        <div className="col-md-3 col-sm-6 col-12">
+                            <div className="form-group">
+                                <label className="form-label" for="breed">Breed</label>
+                                <select id="breed" class="form-control">
+                                    <option>Select breed</option>
+                                    {this.state.catbreeds.map(breed=>(
+                                        <option value={breed.id}>{breed.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
